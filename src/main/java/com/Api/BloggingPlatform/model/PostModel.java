@@ -1,5 +1,6 @@
 package com.Api.BloggingPlatform.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,6 +8,13 @@ import jakarta.persistence.*;
 public class PostModel {
 
     @Id
-    @ManyToOne()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "posts")
     private Long id;
+
+    @ManyToOne()
+    @JoinColumn(name = "Author", nullable = false)
+    @JsonIgnore
+    private String content;
+
+    private UserModel userModel;
 }
