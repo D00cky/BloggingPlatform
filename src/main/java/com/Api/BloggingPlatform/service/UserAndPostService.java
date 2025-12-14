@@ -1,7 +1,12 @@
 package com.Api.BloggingPlatform.service;
 
 import com.Api.BloggingPlatform.model.UserModel;
-import com.Api.BloggingPlatform.repository.BloggingPostRepository;
+import com.Api.BloggingPlatform.repository.UserRepository;
+import jakarta.annotation.Nullable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,21 +15,19 @@ import java.util.List;
 @Service
 public class UserAndPostService {
 
-    private BloggingPostRepository repository;
-    private UserModel userAndPostModel;
+    @Autowired
+    UserRepository userRepository;
 
+    public ResponseEntity<List<UserModel>> getAllPosts(String title) {
+        List<UserModel> userpost = new ArrayList<UserModel>();
 
-    public UserModel getPostById(int id) {
-        return repository.findById(id).get();
-    }
-
-    public void createPost  (UserModel userAndPostModel) {
-        repository.save(userAndPostModel);
-    }
-
-    public List <UserModel> getAllPosts() {
-        List<UserModel> allPosts = new ArrayList<UserModel>();
-        repository.findAll().forEach(userAndPostModel -> allPosts.add(userAndPostModel));
-        return allPosts;
+        if (title == null)
+            userRepository.findAll().forEach(userpost::add);
+        else
+            userRepository.findByTitleContaining(title).forEach(userpost::add);
+        if (userpost.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    return new ResponseEntity<>(userpost, HttpStatus.OK);
     }
 }
