@@ -17,10 +17,16 @@ public class PostModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "posts")
     private Long id;
 
+    @Column(name = "title")
+    private String title;
+
     @ManyToOne()
     @JoinColumn(name = "Author", nullable = false)
     @JsonIgnore
+    @Column(name = "content")
     private String content;
 
-    private UserModel userModel;
+    @Column(name = "author")
+    private String author;
+
 }

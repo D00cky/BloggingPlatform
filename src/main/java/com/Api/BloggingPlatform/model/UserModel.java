@@ -21,9 +21,6 @@ public class UserModel {
         @Column(name="Author")
         private String name;
 
-        @Column(name="title")
-        private String title;
-
-        @OneToMany(mappedBy = "Author")
+        @OneToMany(mappedBy = "Posts_By: ")
         private List<PostModel> posts;
 }
