@@ -22,5 +22,5 @@ public class UserModel {
         private String name;
 
         @OneToMany(mappedBy = "author")
-        private List<PostModel> posts;
+        private List<post> posts;
 }

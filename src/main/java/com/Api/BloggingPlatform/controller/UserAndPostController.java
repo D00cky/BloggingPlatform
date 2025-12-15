@@ -10,15 +10,4 @@ import java.util.List;
 @RequestMapping("/blog")
 public class UserAndPostController {
 
-    private UserAndPostService service;
-
-    @PostMapping("/createPost")
-    public void createPost(@RequestBody UserModel userAndPostModel) {
-        service.createPost(userAndPostModel);
-    }
-
-    @GetMapping("/allPosts")
-    public List<UserModel> getAllPosts(){
-        return service.getAllPosts();
-    }
 }

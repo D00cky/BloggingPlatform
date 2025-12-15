@@ -1,30 +1,31 @@
 package com.Api.BloggingPlatform.service;
 
 import com.Api.BloggingPlatform.model.UserModel;
-import com.Api.BloggingPlatform.repository.BloggingPostRepository;
+import com.Api.BloggingPlatform.model.PostModel;
+import com.Api.BloggingPlatform.repository.PostRepository;
+import com.Api.BloggingPlatform.repository.UserRepository;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class UserAndPostService {
 
-    private BloggingPostRepository repository;
-    private UserModel userAndPostModel;
+    private final UserRepository userRepository;
+    private final PostRepository postRepository;
 
-
-    public UserModel getPostById(int id) {
-        return repository.findById(id).get();
+    public UserAndPostService(UserRepository userRepo, PostRepository postRepo){
+        this.userRepository = userRepo;
+        this.postRepository = postRepo;
     }
 
-    public void createPost  (UserModel userAndPostModel) {
-        repository.save(userAndPostModel);
-    }
-
-    public List <UserModel> getAllPosts() {
-        List<UserModel> allPosts = new ArrayList<UserModel>();
-        repository.findAll().forEach(userAndPostModel -> allPosts.add(userAndPostModel));
-        return allPosts;
+    public PostModel makeAPost(String author, String title, String content) {
+        PostModel newPost = new PostModel();
+        newPost.setTitle(title);
+        newPost.setContent(content);
+        newPost.setAuthor(author);
+        return postRepository.save(newPost);
     }
 }
