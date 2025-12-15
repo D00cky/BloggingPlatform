@@ -20,13 +20,13 @@ public class PostModel {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne()
-    @JoinColumn(name = "Author", nullable = false)
-    @JsonIgnore
+    @Column(name = "author")
+    private String author;
+
     @Column(name = "content")
     private String content;
 
-    @Column(name = "author")
-    private String author;
+    @ManyToOne()
+    private UserModel userModel;
 
 }

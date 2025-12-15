@@ -18,9 +18,10 @@ public class UserModel {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @Column(name="Author")
+        @Column(name="author")
         private String name;
 
-        @OneToMany(mappedBy = "Posts_By: ")
+        @OneToMany(mappedBy = "UserModel")
+        @JoinColumn(name = "author_id")
         private List<PostModel> posts;
 }

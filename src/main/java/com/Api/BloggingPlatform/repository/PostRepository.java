@@ -9,6 +9,4 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<PostModel, Long>  {
-    List<PostModel> findPostById(Long postId);
-    List<PostModel> deletePostById(long userId);
 }
