@@ -11,17 +11,16 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Users")
+@Table(name = "USERS")
 public class UserModel {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue
         private Long id;
 
-        @Column(name="author")
+        @Column(name="AUTHOR_NAME")
         private String name;
 
-        @OneToMany(mappedBy = "UserModel")
-        @JoinColumn(name = "author_id")
-        private List<PostModel> posts;
+        @OneToMany(mappedBy = "userModel")
+        private List<PostModel> post;
 }

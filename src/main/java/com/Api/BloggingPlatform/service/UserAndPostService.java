@@ -21,11 +21,7 @@ public class UserAndPostService {
         this.postRepository = postRepo;
     }
 
-    public PostModel makeAPost(String author, String title, String content) {
-        PostModel newPost = new PostModel();
-        newPost.setTitle(title);
-        newPost.setContent(content);
-        newPost.setAuthor(author);
-        return postRepository.save(newPost);
+    public void makeAPost(PostModel postModel) {
+        postRepository.save(postModel);
     }
 }

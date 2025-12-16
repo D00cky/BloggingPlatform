@@ -7,14 +7,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Posts")
+@Table(name = "POSTS")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "posts")
+    @GeneratedValue
     private Long id;
 
     @Column(name = "title")
@@ -27,6 +27,7 @@ public class PostModel {
     private String content;
 
     @ManyToOne()
+    @JoinColumn(name = "post_id")
     private UserModel userModel;
 
 }
