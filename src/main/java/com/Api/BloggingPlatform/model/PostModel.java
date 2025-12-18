@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 @Entity
 @Table(name = "POSTS")
@@ -26,8 +27,8 @@ public class PostModel {
     @Column(name = "content")
     private String content;
 
-    @ManyToOne()
-    @JoinColumn(name = "post_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "author_id")
     private UserModel userModel;
 
 }

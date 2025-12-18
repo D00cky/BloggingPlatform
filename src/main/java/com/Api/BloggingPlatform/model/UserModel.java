@@ -19,8 +19,8 @@ public class UserModel {
         private Long id;
 
         @Column(name="AUTHOR_NAME")
-        private String name;
+        private String authorName;
 
-        @OneToMany(mappedBy = "userModel")
+        @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL)
         private List<PostModel> post;
 }
