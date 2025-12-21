@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "POSTS")

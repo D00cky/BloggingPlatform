@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,8 +22,8 @@ public class UserModel {
         private Long id;
 
         @Column(name="AUTHOR_NAME")
-        private String authorName;
+        private String author;
 
-        @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL)
-        private List<PostModel> post;
+        @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+        private List<PostModel> post = new ArrayList<PostModel>();
 }
