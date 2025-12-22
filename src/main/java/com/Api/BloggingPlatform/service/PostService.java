@@ -1,6 +1,7 @@
 package com.Api.BloggingPlatform.service;
 
 import com.Api.BloggingPlatform.model.PostModel;
+import com.Api.BloggingPlatform.model.UserModel;
 import com.Api.BloggingPlatform.repository.PostRepository;
 import com.Api.BloggingPlatform.repository.UserRepository;
 
@@ -15,10 +16,11 @@ import org.springframework.stereotype.Service;
 public class PostService {
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
 
     @Transactional
     public ResponseEntity<Object> createPost(PostModel postModel) {
@@ -27,7 +29,12 @@ public class PostService {
         newPost.setTitle(postModel.getTitle());
         newPost.setContent(postModel.getContent());
 
-        newPost.setUserModel(postModel.getUserModel());
+
+        UserModel myAuthor = new UserModel();
+        myAuthor.setAuthor(postModel.getAuthor());
+        UserModel saveAuthor = userRepository.save(myAuthor);
+
+
         PostModel savePost = postRepository.save(newPost);
         if (postRepository.findById(savePost.getId()).isPresent()) {
             return ResponseEntity.accepted().body("Post created");
