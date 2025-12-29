@@ -1,27 +1,23 @@
 package com.Api.BloggingPlatform.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "USERS")
 public class UserModel {
 
-        @Id
-        @GeneratedValue
-        private Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String author;
 
-        @Column(name="AUTHOR_NAME")
-        private String author;
+    public Long getId() {
+        return id;
+    }
 
-        @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-        private List<PostModel> post = new ArrayList<PostModel>();
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }
