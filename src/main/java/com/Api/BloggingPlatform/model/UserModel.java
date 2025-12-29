@@ -10,8 +10,11 @@ public class UserModel {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "AUTHOR", unique = true)
+    @Column(name = "AUTHOR")
     private String author;
+
+    @Column(name = "EMAIL")
+    private String email;
 
     public Long getId() {
         return id;
@@ -27,6 +30,14 @@ public class UserModel {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail() {
+        this.email = email;
     }
 
 
