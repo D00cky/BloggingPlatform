@@ -1,6 +1,6 @@
 package com.Api.BloggingPlatform.controller;
 
-import com.Api.BloggingPlatform.model.UserModel;
+import com.Api.BloggingPlatform.entity.User;
 import com.Api.BloggingPlatform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +17,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user/create")
-    public ResponseEntity<Object> createUser(@RequestBody UserModel userModel) {
-        return userService.createUser(userModel);
+    public ResponseEntity<Object> createUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 
 

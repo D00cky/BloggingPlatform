@@ -1,10 +1,12 @@
-package com.Api.BloggingPlatform.model;
+package com.Api.BloggingPlatform.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="USERS_POST")
-public class PostModel {
+public class Post {
 
     @Id
     @GeneratedValue
@@ -18,6 +20,11 @@ public class PostModel {
 
     @Column(name="content")
     private String content;
+
+    @JoinColumn(name = "post_id")
+    @OneToMany(targetEntity = User.class, cascade = CascadeType.ALL)
+    private List<User> user;
+
 
     public Long getId(){
         return Id;
@@ -50,6 +57,15 @@ public class PostModel {
     public void setContent(String content){
         this.content = content;
     }
+
+    public List<User> getUser() {
+        return user;
+    }
+
+    public void setUser(List<User> user) {
+        this.user = user;
+    }
+
 
 
 }
